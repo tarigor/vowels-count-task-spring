@@ -1,0 +1,3 @@
+First, we'll learn how to load a file from the classpath, a URL, or from a JAR file using standard Java classes.
+
+Second, we'll see how to read the content with BufferedReader, Scanner, StreamTokenizer, DataInputStream, SequenceInputStream, and FileChannel. We will also discuss how to read a UTF-8 encoded file.
