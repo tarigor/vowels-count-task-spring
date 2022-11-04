@@ -19,9 +19,6 @@ import java.util.List;
 @SpringBootApplication
 public class VowelsCountApplication {
 
-    @Autowired
-    private ApplicationContext appContext;
-
     public static void main(String[] args) throws ServiceExceptions {
         ApplicationContext ctx = SpringApplication.run(VowelsCountApplication.class, args);
 
