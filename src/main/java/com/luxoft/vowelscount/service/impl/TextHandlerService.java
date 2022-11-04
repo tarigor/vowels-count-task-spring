@@ -2,6 +2,8 @@ package com.luxoft.vowelscount.service.impl;
 
 import com.luxoft.vowelscount.entity.Result;
 import com.luxoft.vowelscount.service.ITextHandlerService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -12,9 +14,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@PropertySource(value = "application.properties")
 public class TextHandlerService implements ITextHandlerService {
-    private final String PUNCT_REGEX = "[^a-zA-Z0-9_-]";
-    private final String VOWEL_REGEX = "(?i)[aeiouAEIOU]";
+    @Value("${punt.regex}")
+    private final String punctRegex = "[^a-zA-Z0-9_-]";
+    @Value("${vowel.regex}")
+    private final String vowelRegex = "(?i)[aeiouAEIOU]";
 
     /**
      * gets words separately from the text file without punctuation signs and deletes the spaces
@@ -25,7 +30,7 @@ public class TextHandlerService implements ITextHandlerService {
     @Override
     public List<String> getWordsFromTextWithoutPunctuations(String text) {
         return Arrays.asList(text.split(" ")).stream()
-                .map(w -> w.replaceAll(PUNCT_REGEX, "").trim())
+                .map(w -> w.replaceAll(punctRegex, "").trim())
                 .collect(Collectors.toList());
     }
 
@@ -78,7 +83,7 @@ public class TextHandlerService implements ITextHandlerService {
     }
 
     private boolean checkForVowel(String s) {
-        Pattern r = Pattern.compile(VOWEL_REGEX);
+        Pattern r = Pattern.compile(vowelRegex);
         return r.matcher(s).find();
     }
 }

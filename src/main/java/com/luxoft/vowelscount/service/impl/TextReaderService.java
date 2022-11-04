@@ -1,18 +1,17 @@
 package com.luxoft.vowelscount.service.impl;
 
 
-import com.luxoft.vowelscount.service.ITextReaderService;
 import com.luxoft.vowelscount.exceptions.ServiceExceptions;
+import com.luxoft.vowelscount.service.ITextReaderService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@Component
+@Service
 @PropertySource(value = "application.properties")
 public class TextReaderService implements ITextReaderService {
 
@@ -25,7 +24,7 @@ public class TextReaderService implements ITextReaderService {
         System.out.println("i'm here");
         try {
             System.out.println("i'm here");
-            textContent = Files.readString(Paths.get("src/main/resources/"+inputFile).toAbsolutePath());
+            textContent = Files.readString(Paths.get("src/main/resources/" + inputFile).toAbsolutePath());
         } catch (IOException e) {
             throw new ServiceExceptions(e);
         }
