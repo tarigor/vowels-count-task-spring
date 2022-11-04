@@ -20,10 +20,7 @@ public class TextReaderService implements ITextReaderService {
 
     public String readTextFromResources() throws ServiceExceptions {
         String textContent = "";
-        System.out.println("file name -> " + inputFile);
-        System.out.println("i'm here");
         try {
-            System.out.println("i'm here");
             textContent = Files.readString(Paths.get("src/main/resources/" + inputFile).toAbsolutePath());
         } catch (IOException e) {
             throw new ServiceExceptions(e);
